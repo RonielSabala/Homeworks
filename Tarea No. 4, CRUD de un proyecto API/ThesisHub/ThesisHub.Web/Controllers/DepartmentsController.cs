@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.IdentityModel.Tokens;
+using ThesisHub.Domain.Entities;
 using ThesisHub.Persistence;
 
 namespace ThesisHub.Web.Controllers
@@ -20,51 +21,29 @@ namespace ThesisHub.Web.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return View();
         }
 
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return View();
         }
 
-        public async Task<IActionResult> Details(int id)
+        public IActionResult Details(int id)
         {
-            var entity = await _context.Departments
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (entity == null)
-            {
-                return NotFound();
-            }
-
-            return View(entity);
+            return View(new Department { Id = id });
         }
 
-        public async Task<IActionResult> Edit(int id)
+        public IActionResult Edit(int id)
         {
-            var entity = await _context.Departments.FindAsync(id);
-            if (entity == null)
-            {
-                return NotFound();
-            }
-
-            return View(entity);
+            return View(new Department { Id = id });
         }
 
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int id)
         {
-            var entity = await _context.Departments
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (entity == null)
-            {
-                return NotFound();
-            }
-
-            return View(entity);
+            return View(new Department { Id = id });
         }
     }
 }
