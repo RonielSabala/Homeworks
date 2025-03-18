@@ -8,11 +8,11 @@ namespace ThesisHub.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class DepartmentsController : ControllerBase
+public class StudentsController : ControllerBase
 {
     private readonly ThesisHubContext _context;
 
-    public DepartmentsController(ThesisHubContext context)
+    public StudentsController(ThesisHubContext context)
     {
         _context = context;
     }
@@ -20,20 +20,22 @@ public class DepartmentsController : ControllerBase
     [HttpGet(nameof(GetAll))]
     public async Task<IActionResult> GetAll(string filter = "")
     {
-        var entities = await _context.Departments.ToListAsync();
+        var entities = await _context.Students.ToListAsync();
 
         if (!string.IsNullOrEmpty(filter))
         {
             filter = filter.ToLower();
-            entities = entities.Where(d => d.DeptName.ToLower().Contains(filter)).ToList();
+            entities = entities.Where(d => d.FirstName.ToLower().Contains(filter)).ToList();
         }
 
-        var list = entities.Select(entity => new DepartmentDto
+        var list = entities.Select(entity => new StudentDto
         {
             Id = entity.Id,
-            DeptName = entity.DeptName,
-            FacultyHead = entity.FacultyHead,
-            Email = entity.Email
+            FirstName = entity.FirstName,
+            LastName = entity.LastName,
+            Email = entity.Email,
+            Phone = entity.Phone,
+            DepartmentId = entity.DepartmentId,
         }).ToList();
 
         return Ok(list);
@@ -42,58 +44,64 @@ public class DepartmentsController : ControllerBase
     [HttpGet("Get/{id}")]
     public async Task<IActionResult> Get(int id)
     {
-        var entitydb = await _context.Departments.FindAsync(id);
+        var entitydb = await _context.Students.FindAsync(id);
         if (entitydb == null)
         {
             return BadRequest("Not found");
         }
 
-        var entity = new DepartmentDto
+        var entity = new StudentDto
         {
             Id = entitydb.Id,
-            DeptName = entitydb.DeptName,
-            FacultyHead = entitydb.FacultyHead,
+            FirstName = entitydb.FirstName,
+            LastName = entitydb.LastName,
             Email = entitydb.Email,
+            Phone = entitydb.Phone,
+            DepartmentId = entitydb.DepartmentId,
         };
 
         return Ok(entity);
     }
 
     [HttpPost("Add")]
-    public async Task<IActionResult> Create([FromBody] DepartmentDto dto)
+    public async Task<IActionResult> Create([FromBody] StudentDto dto)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest("The entity is invalid");
         }
 
-        var entity = new Department
+        var entity = new Student
         {
             Id = dto.Id,
-            DeptName = dto.DeptName,
-            FacultyHead = dto.FacultyHead,
+            FirstName = dto.FirstName,
+            LastName = dto.LastName,
             Email = dto.Email,
+            Phone = dto.Phone,
+            DepartmentId = dto.DepartmentId,
         };
 
-        _context.Departments.Add(entity);
+        _context.Students.Add(entity);
         await _context.SaveChangesAsync();
         return Ok(new { success = true, message = "Created successfully!" });
     }
 
     [HttpPut(nameof(Update))]
-    public async Task<IActionResult> Update([FromBody] DepartmentDto dto)
+    public async Task<IActionResult> Update([FromBody] StudentDto dto)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest("The entity is invalid");
         }
 
-        var entity = new Department
+        var entity = new Student
         {
             Id = dto.Id,
-            DeptName = dto.DeptName,
-            FacultyHead = dto.FacultyHead,
+            FirstName = dto.FirstName,
+            LastName = dto.LastName,
             Email = dto.Email,
+            Phone = dto.Phone,
+            DepartmentId = dto.DepartmentId,
         };
 
         try
@@ -103,7 +111,7 @@ public class DepartmentsController : ControllerBase
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!DepartmentExists(entity.Id))
+            if (!StudentExists(entity.Id))
             {
                 return BadRequest("Not found");
             }
@@ -119,19 +127,19 @@ public class DepartmentsController : ControllerBase
     [HttpDelete("Delete/{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        var entityDb = await _context.Departments.FindAsync(id);
+        var entityDb = await _context.Students.FindAsync(id);
         if (entityDb == null)
         {
             return BadRequest("Not found");
         }
 
-        _context.Departments.Remove(entityDb);
+        _context.Students.Remove(entityDb);
         await _context.SaveChangesAsync();
         return Ok(new { success = true, message = "Deleted successfully!" });
     }
 
-    private bool DepartmentExists(int id)
+    private bool StudentExists(int id)
     {
-        return _context.Departments.Any(e => e.Id == id);
+        return _context.Students.Any(e => e.Id == id);
     }
 }

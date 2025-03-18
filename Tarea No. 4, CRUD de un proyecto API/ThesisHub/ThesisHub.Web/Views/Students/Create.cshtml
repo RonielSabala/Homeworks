@@ -1,0 +1,81 @@
+﻿@model Student
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Student</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        @* First name *@
+        <div class="form-group">
+            <label asp-for="FirstName" class="control-label"></label>
+            <input asp-for="FirstName" class="form-control" id="firstName" />
+        </div>
+
+        @* Last name *@
+        <div class="form-group">
+            <label asp-for="LastName" class="control-label"></label>
+            <input asp-for="LastName" class="form-control" id="lastName" />
+        </div>
+
+        @* Email *@
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" id="email" />
+        </div>
+
+        @* Phone *@
+        <div class="form-group">
+            <label asp-for="Phone" class="control-label"></label>
+            <input asp-for="Phone" class="form-control" id="phone" />
+        </div>
+
+        @* Department id *@
+        <div class="form-group">
+            <label asp-for="DepartmentId" class="control-label"></label>
+            <input asp-for="DepartmentId" class="form-control" id="departmentId" />
+        </div>
+
+        @* Create button *@
+        <div class="form-group">
+            <button onclick="saveStudent()" class="btn btn-primary">Create</button>
+        </div>
+        
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    API = "https://localhost:7149/Students";
+
+    function saveStudent() {
+        let entity = {
+            firstName: $("#firstName").val(),
+            lastName: $("#lastName").val(),
+            email: $("#email").val(),
+            phone: $("#phone").val(),
+            departmentId: $("#departmentId").val()
+        };
+
+        $.ajax({
+            url: `${API}/Add`,
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(entity),
+            success: function (response) {
+                if (response.success) {
+                    window.location.href = "/Students/Index";
+                } else {
+                    alert("Error: " + response.message);
+                }
+            }
+        });
+    }
+</script>
+}
