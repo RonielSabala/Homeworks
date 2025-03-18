@@ -1,4 +1,4 @@
-﻿@model DepartmentViewModel
+﻿@model StudentViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,7 +6,7 @@
 
 <h1>Edit</h1>
 
-<h4>Department</h4>
+<h4>Student</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,13 +14,13 @@
 
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label class="control-label">Dept. name</label>
-            <input class="form-control" id="deptName" />
+            <label class="control-label">First name</label>
+            <input class="form-control" id="firstName" />
         </div>
 
         <div class="form-group">
-            <label class="control-label">Faculty head</label>
-            <input class="form-control" id="facultyHead" />
+            <label class="control-label">Last name</label>
+            <input class="form-control" id="lastName" />
         </div>
 
         <div class="form-group">
@@ -28,9 +28,19 @@
             <input class="form-control" id="email" />
         </div>
 
+        <div class="form-group">
+            <label class="control-label">Phone</label>
+            <input class="form-control" id="phone" />
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Department id</label>
+            <input class="form-control" id="departmentId" />
+        </div>
+
         @* Save button *@
         <div class="form-group">
-            <button onclick="editDepartment()" class="btn btn-primary">Update</button>
+            <button onclick="editStudent()" class="btn btn-primary">Update</button>
         </div>
 
     </div>
@@ -40,7 +50,7 @@
 
 @section Scripts {
 <script>
-    API = "https://localhost:7149/Departments";
+    API = "https://localhost:7149/Students";
 
     $(document).ready(function () {
         loadStudent(@Model.Id);
@@ -50,19 +60,23 @@
         $.get(
             `${API}/Get/${id}`,
             function (entity) {
-                $("#deptName").val(entity.deptName);
-                $("#facultyHead").val(entity.facultyHead);
+                $("#firstName").val(entity.firstName);
+                $("#lastName").val(entity.lastName);
                 $("#email").val(entity.email);
+                $("#phone").val(entity.phone);
+                $("#departmentId").val(entity.departmentId);
             }
         );
     }
 
-    function editDepartment() {
+    function editStudent() {
         let entity = {
             id: $("#modelId").val(),
-            deptName: $("#deptName").val(),
-            facultyHead: $("#facultyHead").val(),
-            email: $("#email").val()
+            firstName: $("#firstName").val(),
+            lastName: $("#lastName").val(),
+            email: $("#email").val(),
+            phone: $("#phone").val(),
+            departmentId: $("#departmentId").val()
         };
 
         $.ajax({
@@ -72,7 +86,7 @@
             data: JSON.stringify(entity),
             success: function (response) {
                 if (response.success) {
-                    window.location.href = "/Departments/Index";
+                    window.location.href = "/Students/Index";
                 } else {
                     alert("Error: " + response.message);
                 }
