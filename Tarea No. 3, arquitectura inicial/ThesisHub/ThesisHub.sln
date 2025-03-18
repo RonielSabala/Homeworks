@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThesisHub.Domain", "ThesisH
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThesisHub.Persistence", "ThesisHub.Persistence\ThesisHub.Persistence.csproj", "{BB8222A3-BDB3-4006-ABE2-A716E8B5E214}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThesisHub.Application", "ThesisHub.Application\ThesisHub.Application.csproj", "{9647A021-20E6-4542-88E7-11E4767240B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThesisHub.Infrastructure", "ThesisHub.Infrastructure\ThesisHub.Infrastructure.csproj", "{D4827023-7C95-4F48-8B98-5FB31DB4096E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{BB8222A3-BDB3-4006-ABE2-A716E8B5E214}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB8222A3-BDB3-4006-ABE2-A716E8B5E214}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB8222A3-BDB3-4006-ABE2-A716E8B5E214}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9647A021-20E6-4542-88E7-11E4767240B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9647A021-20E6-4542-88E7-11E4767240B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9647A021-20E6-4542-88E7-11E4767240B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9647A021-20E6-4542-88E7-11E4767240B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4827023-7C95-4F48-8B98-5FB31DB4096E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4827023-7C95-4F48-8B98-5FB31DB4096E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4827023-7C95-4F48-8B98-5FB31DB4096E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4827023-7C95-4F48-8B98-5FB31DB4096E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
