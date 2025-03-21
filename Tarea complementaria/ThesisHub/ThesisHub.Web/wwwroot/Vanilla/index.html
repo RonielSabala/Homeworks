@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ThesisHub</title>
+    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/site.css"/>
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="mb-4">ThesisHub CRUD - Roniel Sabala</h1>
+
+        <section class="mb-5">
+            <h2>Departments</h2>
+            <form id="departmentForm" class="row g-3">
+                <input type="hidden" id="deptId" />
+
+                <div class="col-md-4">
+                    <label for="deptName" class="form-label">Name:</label>
+                    <input type="text" id="deptName" class="form-control" required />
+                </div>
+                <div class="col-md-4">
+                    <label for="facultyHead" class="form-label">Faculty Head:</label>
+                    <input type="text" id="facultyHead" class="form-control" required />
+                </div>
+                <div class="col-md-4">
+                    <label for="deptEmail" class="form-label">Email:</label>
+                    <input type="email" id="deptEmail" class="form-control" required />
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+
+            <div class="table-responsive mt-3">
+                <table class="table table-bordered table-striped" id="departmentsTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>DeptName</th>
+                            <th>FacultyHead</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- JS will work here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section>
+            <h2>Students</h2>
+            <form id="studentForm" class="row g-3">
+                <input type="hidden" id="studentId" />
+
+                <div class="col-md-4">
+                    <label for="firstName" class="form-label">First name:</label>
+                    <input type="text" id="firstName" class="form-control" required />
+                </div>
+                <div class="col-md-4">
+                    <label for="lastName" class="form-label">Last name:</label>
+                    <input type="text" id="lastName" class="form-control" required />
+                </div>
+                <div class="col-md-4">
+                    <label for="studentEmail" class="form-label">Email:</label>
+                    <input type="email" id="studentEmail" class="form-control" required />
+                </div>
+                <div class="col-md-4">
+                    <label for="phone" class="form-label">Phone:</label>
+                    <input type="text" id="phone" class="form-control" required />
+                </div>
+                <div class="col-md-4">
+                    <label for="departmentId" class="form-label">Department id:</label>
+                    <input type="number" id="departmentId" class="form-control" required />
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+
+            <div class="table-responsive mt-3">
+                <table class="table table-bordered table-striped" id="studentsTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>DepartmentId</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- JS will work here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/departments.js"></script>
+    <script src="js/students.js"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
-﻿namespace ThesisHub.Presentation.Models
+﻿namespace ThesisHub.API.Dtos
 {
-    public class StudentModel
+    public class StudentDto
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

@@ -20,3 +20,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+h1, h2 {
+    color: #2c3e50;
+}
+
+table thead th {
+    background-color: #f8f9fa;
+}
